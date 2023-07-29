@@ -1,10 +1,12 @@
 "use client"
+import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+
 import React from "react";
 
 const Introduction = () => {
   const pathname = usePathname()
-  
+  console.log(pathname);
   const GithubIcon = () => {
     return (
       <svg
@@ -42,19 +44,19 @@ const Introduction = () => {
     navs: [
       {
         title: "About",
-        url: "#about",
+        url: "/about",
       },
       {
         title: "My Skills",
-        url: "#skill",
+        url: "/skills",
       },
       {
         title: "Experience",
-        url: "#experience",
+        url: "/experience",
       },
       {
         title: "Projects",
-        url: "#projects",
+        url: "/projects",
       },
     ],
     socialLinks: [
@@ -77,11 +79,14 @@ const Introduction = () => {
   };
 
   const [user, setUser] = React.useState(initUser);
+  
+  // const active
+  const isActive = (item)=> item.url == pathname
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:flex-col lg:justify-between lg:py-24">
       <div>
         <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
-          <a href="/">{user.name}</a>
+          <Link href="/">{user.name}</Link>
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
           {user.designation}
@@ -92,15 +97,15 @@ const Introduction = () => {
             {user.navs.map((item) => {
               return (
                 <li key={item.title}>
-                  <a
+                  <Link
                     className="group flex items-center py-3 active"
                     href={item.url}
                   >
-                    <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-                    <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                    <span className={`nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none ${isActive(item) && 'w-16 bg-slate-200 text-slate-200'}`}></span>
+                    <span className={`nav-text text-xs font-bold uppercase tracking-widest group-hover:text-slate-200 group-focus-visible:text-slate-200 ${isActive(item) ? ' text-slate-200' : 'text-slate-500'}`}>
                       {item.title}
                     </span>
-                  </a>
+                  </Link>
                 </li>
               );
             })}
