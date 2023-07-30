@@ -1,11 +1,11 @@
-"use client"
-import Link from 'next/link';
-import { usePathname } from 'next/navigation'
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import React from "react";
 
 const Introduction = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   console.log(pathname);
   const GithubIcon = () => {
     return (
@@ -79,9 +79,9 @@ const Introduction = () => {
   };
 
   const [user, setUser] = React.useState(initUser);
-  
+
   // const active
-  const isActive = (item)=> item.url == pathname
+  const isActive = (item) => item.url == pathname;
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:flex-col lg:justify-between lg:py-24">
       <div>
@@ -101,8 +101,16 @@ const Introduction = () => {
                     className="group flex items-center py-3 active"
                     href={item.url}
                   >
-                    <span className={`nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none ${isActive(item) && 'w-16 bg-slate-200 text-slate-200'}`}></span>
-                    <span className={`nav-text text-xs font-bold uppercase tracking-widest group-hover:text-slate-200 group-focus-visible:text-slate-200 ${isActive(item) ? ' text-slate-200' : 'text-slate-500'}`}>
+                    <span
+                      className={`nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none ${
+                        isActive(item) && "w-16 bg-slate-200 text-slate-200"
+                      }`}
+                    ></span>
+                    <span
+                      className={`nav-text text-xs font-bold uppercase tracking-widest group-hover:text-slate-200 group-focus-visible:text-slate-200 ${
+                        isActive(item) ? " text-slate-200" : "text-slate-500"
+                      }`}
+                    >
                       {item.title}
                     </span>
                   </Link>
@@ -122,14 +130,22 @@ const Introduction = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <span className="sr-only">
-                  {item.title}
-                </span>
+                <span className="sr-only">{item.title}</span>
                 {item.icon}
               </a>
             </li>
           );
         })}
+        <li className="mr-5 text-xs">
+          <a
+            href="/software-engineer-sarjis-resume.pdf"
+            className="rounded-md bg-teal-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600"
+            rel="noreferrer"
+            download
+          >
+            Get Resume
+          </a>
+        </li>
       </ul>
     </header>
   );
