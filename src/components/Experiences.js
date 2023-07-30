@@ -75,7 +75,7 @@ const Experiences = () => {
         <ol className="group/list">
           {experiences.map((item) => {
             return (
-              <li className="mb-12">
+              <li key={item.date + item.company} className="mb-12">
                 <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 xl:hover:!opacity-100 xl:group-hover/list:opacity-50">
                   <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none xl:-inset-x-6 xl:block xl:group-hover:bg-slate-800/50 xl:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] xl:group-hover:drop-shadow-lg"></div>
                   <header
@@ -112,7 +112,7 @@ const Experiences = () => {
                     >
                       {item.projects.split(",").map((tool) => {
                         return (
-                          <li className="mt-2">
+                          <li key={tool} className="mt-2">
                             <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
                               {tool}
                             </div>
@@ -126,7 +126,7 @@ const Experiences = () => {
                     >
                       {item.tools.split(",").map((tool) => {
                         return (
-                          <li className="mr-1.5 mt-2">
+                          <li key={tool} className="mr-1.5 mt-2">
                             <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 ">
                               {tool}
                             </div>
